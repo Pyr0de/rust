@@ -451,3 +451,11 @@ uint16_t issue_97463_leak_uninit_data(uint32_t a, uint32_t b, uint32_t c) {
 
     return data->b; /* leak data */
 }
+
+void templated_trampoline(void (*func)()) {
+    func();
+}
+
+void cpp_trampoline(void (*func)()) {
+    templated_trampoline(func);
+}
